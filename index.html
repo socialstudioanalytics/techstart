@@ -779,7 +779,7 @@ button:active,.btn:active,.nav-btn:active{transform:scale(.97);transition:transf
 }
 
 /* Memory Matrix — let the grid fill the available space */
-#mm-grid{width:min(75vmin, 1400px) !important;gap:clamp(8px, .8vmin, 24px) !important}
+#mm-grid{width:min(85vmin, 2400px) !important;gap:clamp(8px, .9vmin, 28px) !important}
 #mm-grid .cell{min-width:0;min-height:0}
 
 /* Hub cards — bigger tap target overall on huge screens */
@@ -805,21 +805,24 @@ button:active,.btn:active,.nav-btn:active{transform:scale(.97);transition:transf
 .btn-row .btn{min-height:4rem;min-width:9rem;font-size:1.05rem !important;padding:.9rem 1.6rem !important}
 
 /* Brain Shift / Speed Match game-area cards (zone rows) — give them more room */
-.bs-zone,.sm-card-slot{min-height:14rem}
+.bs-zone,.sm-card-slot{min-height:clamp(14rem, 28vmin, 32rem)}
 .bs-card,.bs-card-placeholder{
-  width:clamp(170px, 22vmin, 360px) !important;
-  border-radius:18px !important;
+  width:clamp(180px, 32vmin, 700px) !important;
+  border-radius:clamp(12px, 1.5vmin, 28px) !important;
 }
-.bs-card-letter{font-size:clamp(3rem, 10vmin, 8rem) !important}
-.bs-card-number{font-size:clamp(2.4rem, 7vmin, 6rem) !important}
+.bs-card-letter{font-size:clamp(3rem, 14vmin, 14rem) !important}
+.bs-card-number{font-size:clamp(2.4rem, 9vmin, 9rem) !important}
 #bs-hint-top,#bs-hint-bottom{
-  width:clamp(96px, 11vw, 220px) !important;
-  font-size:clamp(.9rem, 1.4vmin, 1.4rem) !important;
+  width:clamp(96px, 9vmin, 280px) !important;
+  font-size:clamp(.9rem, 1.5vmin, 1.6rem) !important;
 }
-.bs-zone{padding:2rem clamp(1.5rem, 3vw, 4rem) !important}
+.bs-zone{padding:clamp(1rem, 3vmin, 4rem) clamp(1.5rem, 4vmin, 6rem) !important}
 
 /* Speed Match cards & symbols */
-.sm-card-scene{width:clamp(180px, 22vmin, 360px) !important}
+.sm-card-scene{width:clamp(180px, 32vmin, 700px) !important}
+.sm-curr-symbol{font-size:clamp(2.8rem, 14vmin, 14rem) !important}
+.sm-card-back-pattern{font-size:clamp(2.5rem, 5vmin, 6rem) !important}
+.sm-card-fb{font-size:clamp(2rem, 6vmin, 6rem) !important}
 .sm-slot-label{font-size:clamp(.7rem, 1.2vmin, 1.1rem) !important;letter-spacing:.25em !important}
 #sm-cards-row{gap:clamp(1rem, 3vmin, 4rem) !important}
 
@@ -865,6 +868,63 @@ html,body{overscroll-behavior-y:none}
   filter:drop-shadow(0 0 14px var(--card-color)) drop-shadow(0 0 4px rgba(0,0,0,.4))}
 [data-theme="light"] .gc-icon-img{filter:drop-shadow(0 0 8px var(--card-color))}
 .game-card.disabled .gc-icon-img{filter:grayscale(.6) opacity(.6)}
+
+/* ═══════════════════════════════════════════════════════
+   LARGE DISPLAY MODE — Samsung Flipchart, 4K touchscreens, big kiosks
+   Triggered when EITHER dimension is ≥ 1400px so portrait-mounted
+   Flips also qualify even if they report a 1080p logical viewport.
+   ═══════════════════════════════════════════════════════ */
+@media (min-width:1400px), (min-height:1400px){
+  /* Root scaling: 1.3vw on a 1080p (1920) screen = ~25px; 1440p = 33px; 4K = 50px */
+  html{font-size:clamp(20px, 1.3vw, 56px)}
+
+  /* ── Memory Matrix ── */
+  #mm-grid{width:min(88vmin, 3000px) !important; gap:clamp(10px, 1.1vmin, 36px) !important}
+  #mm-mem-time{font-size:1.5rem !important}
+  .mm-phase-tag{font-size:1.1rem !important; padding:.6rem 1.4rem !important}
+  #mm-cd-num{font-size:clamp(10rem, 22vmin, 22rem) !important}
+
+  /* ── Speed Match ── */
+  .sm-card-scene{width:clamp(280px, 36vmin, 900px) !important}
+  #sm-cards-row{gap:clamp(2rem, 5vmin, 6rem) !important}
+  #sm-phase-label{font-size:1.1rem !important; padding:.6rem 1.5rem !important}
+  .sm-slot-label{font-size:1rem !important}
+  .sm-curr-symbol{font-size:clamp(7rem, 18vmin, 18rem) !important}
+  .sm-curr-name{font-size:1rem !important}
+  #sm-memorize-bar-wrap{width:min(80%, 700px) !important; height:6px !important}
+  #sm-cd-num{font-size:clamp(10rem, 22vmin, 22rem) !important}
+  .sm-cd-label{font-size:1.2rem !important}
+  .sm-card-fb{font-size:clamp(4rem, 8vmin, 9rem) !important}
+  .sm-card-back-pattern{font-size:clamp(4rem, 7vmin, 8rem) !important}
+
+  /* ── Brain Shift ── */
+  #bs-cd-num{font-size:clamp(10rem, 22vmin, 22rem) !important}
+  .bs-cd-label{font-size:1.2rem !important}
+  .bs-card{width:clamp(280px, 36vmin, 900px) !important}
+  .bs-card-placeholder{width:clamp(280px, 36vmin, 900px) !important}
+  .bs-card-letter{font-size:clamp(6rem, 18vmin, 18rem) !important}
+  .bs-card-number{font-size:clamp(3rem, 10vmin, 12rem) !important}
+  .zone-rule-hint{
+    width:clamp(140px, 11vmin, 280px) !important;
+    font-size:clamp(1.1rem, 1.6vmin, 1.8rem) !important;
+  }
+  .bs-zone{padding:3rem clamp(2rem, 4vmin, 6rem) !important; min-height:clamp(320px, 42vh, 700px) !important}
+
+  /* ── Big tappable answer buttons (BS, SM) — sized for the room ── */
+  .bs-ans-btn, .sm-ans-btn{min-height:14rem !important; font-size:4.5rem !important}
+
+  /* ── HUDs scale up cleanly ── */
+  .hud-title-block{font-size:1.1rem !important}
+  #sm-time-display, #bs-time-display{font-size:1.6rem !important}
+  #sm-score-display, #bs-hud-score, #mm-hud-score{font-size:1.4rem !important}
+  #sm-mult-badge, #bs-mult-badge{font-size:1.3rem !important}
+  .hud-back-btn, .hud-nav-btn{font-size:1rem !important; padding:.6rem 1.2rem !important; min-height:3.4rem !important}
+}
+
+/* True 4K extra polish */
+@media (min-width:2800px){
+  html{font-size:clamp(28px, 1.4vw, 72px)}
+}
 
 /* ═══════════════════════════════════════════════════════
    LANGUAGE OVERRIDES — English mode swaps Arabic fonts
